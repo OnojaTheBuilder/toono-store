@@ -1,8 +1,15 @@
 import { useState } from "react";
 import { CartProvider, useCart } from "./context/CartContext";
+import AnnouncementBar from "./components/AnnouncementBar";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import CategoryTiles from "./components/CategoryTiles";
+import FeaturedStrip from "./components/FeaturedStrip";
 import ProductGrid from "./components/ProductGrid";
+import PromoBand from "./components/PromoBand";
+import TrustStrip from "./components/TrustStrip";
+import Testimonials from "./components/Testimonials";
+import Newsletter from "./components/Newsletter";
 import ProductPage from "./components/ProductPage";
 import SlideCart from "./components/SlideCart";
 import Footer from "./components/Footer";
@@ -42,13 +49,22 @@ function Shell() {
   return (
     <>
       {showChrome && (
-        <Header activeCat={category} onCategory={pickCategory} onHome={goHome} onNavigate={navigate} />
+        <>
+          <AnnouncementBar />
+          <Header activeCat={category} onCategory={pickCategory} onHome={goHome} onNavigate={navigate} />
+        </>
       )}
 
       {view.page === "home" && (
         <>
           <Hero onExplore={openProduct} />
+          <CategoryTiles onCategory={pickCategory} />
+          <FeaturedStrip onOpen={openProduct} />
           <ProductGrid category={category} onOpen={openProduct} />
+          <PromoBand onCategory={pickCategory} />
+          <TrustStrip />
+          <Testimonials />
+          <Newsletter />
         </>
       )}
 
