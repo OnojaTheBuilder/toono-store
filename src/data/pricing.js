@@ -1,7 +1,5 @@
-// ALL logistics pricing lives here. When the client sends real numbers,
-// edit this file only.
+// ALL logistics pricing lives here. Client sends real numbers, edit this file.
 
-// --- MODEL 1: ZONE PRICING (fixed price per area) ---
 export const ZONES = [
   { id: "local", name: "Within city", price: 15 },
   { id: "near", name: "Neighbouring town (under 30km)", price: 30 },
@@ -9,20 +7,14 @@ export const ZONES = [
   { id: "long", name: "Long distance (100km+)", price: 120 },
 ];
 
-// --- MODEL 2: PER-KM PRICING ---
-export const PER_KM = {
-  baseFee: 10,
-  ratePerKm: 1.5,
-};
+export const PER_KM = { baseFee: 10, ratePerKm: 1.5 };
 
-// Package size multipliers, applied on top of either model.
 export const SIZE_TIERS = [
   { id: "small", name: "Small (envelope / shoebox)", multiplier: 1 },
   { id: "medium", name: "Medium (carry-on size)", multiplier: 1.4 },
   { id: "large", name: "Large (suitcase+)", multiplier: 1.9 },
 ];
 
-// Demo locations for the per-km straight-line calc.
 export const LOCATIONS = [
   { name: "Toronto, ON", lat: 43.6532, lng: -79.3832 },
   { name: "Mississauga, ON", lat: 43.589, lng: -79.6441 },
@@ -34,7 +26,6 @@ export const LOCATIONS = [
   { name: "Barrie, ON", lat: 44.3894, lng: -79.6903 },
 ];
 
-// Straight-line (Haversine) distance in km. Swap for a routing API later.
 export function distanceKm(a, b) {
   const R = 6371;
   const toRad = (d) => (d * Math.PI) / 180;
@@ -50,8 +41,35 @@ export function distanceKm(a, b) {
 
 export const BUSINESS = {
   name: "TOONO Logistics",
+  tagline: "Deliveries, done properly.",
   phone: "+1 (000) 000-0000",
   email: "orders@toono.example",
   hours: "Mon–Sat, 7am–8pm ET",
   area: "Ontario, Canada",
 };
+
+export const STATS = [
+  { n: "2,400+", l: "Deliveries completed" },
+  { n: "8", l: "Cities covered" },
+  { n: "99%", l: "On-time rate" },
+  { n: "<24h", l: "Avg. turnaround" },
+];
+
+export const COVERAGE = [
+  "Toronto", "Mississauga", "Hamilton", "Kitchener",
+  "London", "Ottawa", "Kingston", "Barrie",
+];
+
+export const TESTIMONIALS = [
+  { name: "Bola A.", role: "Small business owner", text: "I ship my orders through TOONO every week. Always on time, always careful. Feels like having my own delivery guy." },
+  { name: "Grace M.", role: "Boutique owner", text: "The quote is instant and the price is fair. No hidden fees, no runaround. Booking takes a minute." },
+  { name: "Kevin T.", role: "Regular customer", text: "Sent furniture across the region and it arrived without a scratch. Genuinely reliable service." },
+];
+
+export const FAQ = [
+  { q: "How fast can you deliver?", a: "Local runs are often same-day if booked before noon. Regional and long-distance deliveries are typically next day, confirmed when you book." },
+  { q: "How is the price calculated?", a: "You get an instant quote based on where it's going and the package size. The price you see is the price you pay, no surprise fees." },
+  { q: "What can you carry?", a: "Documents, parcels, and larger items up to a full suitcase and beyond. If you're unsure about size, send a note with your booking and we'll confirm." },
+  { q: "How do I pay?", a: "For now, payment is arranged directly on pickup or delivery. Online payment is coming soon." },
+  { q: "Do you handle fragile items?", a: "Yes. Flag it in your booking notes and it's handled with extra care, start to finish." },
+];
