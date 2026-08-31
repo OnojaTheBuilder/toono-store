@@ -2,7 +2,7 @@ import { useCart } from "../context/CartContext";
 
 const CATEGORIES = ["All", "Women", "Hair", "Men"];
 
-export default function Header({ activeCat, onCategory, onHome }) {
+export default function Header({ activeCat, onCategory, onHome, onNavigate }) {
   const { count, openCart } = useCart();
 
   return (
@@ -13,7 +13,7 @@ export default function Header({ activeCat, onCategory, onHome }) {
           TOONO
         </button>
 
-        {/* Category nav */}
+        {/* Category + page nav */}
         <nav className="hidden gap-8 md:flex">
           {CATEGORIES.map((c) => (
             <button
@@ -26,6 +26,9 @@ export default function Header({ activeCat, onCategory, onHome }) {
               {c}
             </button>
           ))}
+          <button onClick={() => onNavigate({ page: "about" })} className="text-sm uppercase tracking-wider text-neutral-400 hover:text-neutral-50">About</button>
+          <button onClick={() => onNavigate({ page: "contact" })} className="text-sm uppercase tracking-wider text-neutral-400 hover:text-neutral-50">Contact</button>
+          <button onClick={() => onNavigate({ page: "logistics" })} className="text-sm uppercase tracking-wider text-emerald-400 hover:text-emerald-300">Logistics</button>
         </nav>
 
         {/* Cart */}
@@ -42,7 +45,7 @@ export default function Header({ activeCat, onCategory, onHome }) {
         </button>
       </div>
 
-      {/* Mobile category row */}
+      {/* Mobile nav row */}
       <nav className="flex gap-6 overflow-x-auto px-6 pb-3 md:hidden">
         {CATEGORIES.map((c) => (
           <button
@@ -55,6 +58,9 @@ export default function Header({ activeCat, onCategory, onHome }) {
             {c}
           </button>
         ))}
+        <button onClick={() => onNavigate({ page: "about" })} className="whitespace-nowrap text-sm uppercase tracking-wider text-neutral-400">About</button>
+        <button onClick={() => onNavigate({ page: "contact" })} className="whitespace-nowrap text-sm uppercase tracking-wider text-neutral-400">Contact</button>
+        <button onClick={() => onNavigate({ page: "logistics" })} className="whitespace-nowrap text-sm uppercase tracking-wider text-emerald-400">Logistics</button>
       </nav>
     </header>
   );

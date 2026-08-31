@@ -9,6 +9,7 @@ import ProductGrid from "./components/ProductGrid";
 import PromoBand from "./components/PromoBand";
 import TrustStrip from "./components/TrustStrip";
 import Testimonials from "./components/Testimonials";
+import LogisticsBand from "./components/LogisticsBand";
 import Newsletter from "./components/Newsletter";
 import ProductPage from "./components/ProductPage";
 import SlideCart from "./components/SlideCart";
@@ -17,6 +18,7 @@ import AboutPage from "./components/AboutPage";
 import ContactPage from "./components/ContactPage";
 import CheckoutPage from "./components/CheckoutPage";
 import OrderConfirmation from "./components/OrderConfirmation";
+import LogisticsPage from "./components/logistics/LogisticsPage";
 
 function Shell() {
   const [view, setView] = useState({ page: "home", slug: null });
@@ -38,13 +40,16 @@ function Shell() {
     navigate({ page: "home", category: cat });
   };
   const goCheckout = () => navigate({ page: "checkout" });
+  const goLogistics = () => navigate({ page: "logistics" });
   const placeOrder = (total) => {
     setOrderTotal(total);
     clear();
     navigate({ page: "confirmation" });
   };
 
-  const showChrome = view.page !== "checkout" && view.page !== "confirmation";
+  // Logistics, checkout, and confirmation are full-screen: no store chrome.
+  const showChrome =
+    view.page !== "checkout" && view.page !== "confirmation" && view.page !== "logistics";
 
   return (
     <>
@@ -64,6 +69,7 @@ function Shell() {
           <PromoBand onCategory={pickCategory} />
           <TrustStrip />
           <Testimonials />
+          <LogisticsBand onOpen={goLogistics} />
           <Newsletter />
         </>
       )}
@@ -83,6 +89,7 @@ function Shell() {
       {view.page === "contact" && <ContactPage />}
       {view.page === "checkout" && <CheckoutPage onBack={goHome} onPlaced={placeOrder} />}
       {view.page === "confirmation" && <OrderConfirmation total={orderTotal} onHome={goHome} />}
+      {view.page === "logistics" && <LogisticsPage onBackToStore={goHome} />}
 
       {showChrome && <Footer onNavigate={navigate} />}
 
