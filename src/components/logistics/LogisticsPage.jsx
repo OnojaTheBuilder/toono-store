@@ -58,20 +58,26 @@ export default function LogisticsPage({ onBackToStore }) {
       </div>
 
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-slate-200 bg-white">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
+      <section className="relative overflow-hidden border-b border-slate-200 bg-[#0f1b2d] text-white">
+        <img
+          src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&q=80"
+          alt="Delivery truck"
+          className="absolute inset-0 h-full w-full object-cover opacity-25"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f1b2d] via-[#0f1b2d]/80 to-transparent" />
+        <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
           <div>
-            <span className="inline-block rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600">
+            <span className="inline-block rounded-full bg-blue-500/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-300">
               Serving {BUSINESS.area}
             </span>
             <h1 className="mt-5 text-5xl font-extrabold leading-[1.05] tracking-tight lg:text-6xl">
               {BUSINESS.tagline}
             </h1>
-            <p className="mt-5 max-w-md text-lg text-slate-600">
+            <p className="mt-5 max-w-md text-lg text-slate-300">
               Fast, reliable pickup and delivery across the region. Get a price in
               seconds, book a pickup in minutes.
             </p>
-            <div className="mt-8 flex flex-wrap gap-6 text-sm text-slate-500">
+            <div className="mt-8 flex flex-wrap gap-6 text-sm text-slate-400">
               <span>📞 {BUSINESS.phone}</span>
               <span>🕑 {BUSINESS.hours}</span>
             </div>
@@ -80,6 +86,7 @@ export default function LogisticsPage({ onBackToStore }) {
         </div>
       </section>
 
+      
       {/* Stats */}
       <section className="bg-[#0f1b2d] px-6 py-12 text-white">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 md:grid-cols-4">

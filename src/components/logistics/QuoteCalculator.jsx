@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ZONES, PER_KM, SIZE_TIERS, LOCATIONS, distanceKm } from "../../data/pricing";
+import { ZONES, SIZE_TIERS, LOCATIONS, distanceKm, calcPrice, PRICING } from "../../data/pricing";
 
 export default function QuoteCalculator({ onBook }) {
-  const [model, setModel] = useState("zone");
+  const [model, setModel] = useState("distance"); // default to the real model now
   const [zone, setZone] = useState(ZONES[0].id);
   const [from, setFrom] = useState(LOCATIONS[0].name);
   const [to, setTo] = useState(LOCATIONS[1].name);
@@ -12,21 +12,18 @@ export default function QuoteCalculator({ onBook }) {
   const sizeTier = SIZE_TIERS.find((s) => s.id === size);
 
   const calculate = () => {
-    let base = 0;
-    let detail = "";
     if (model === "zone") {
       const z = ZONES.find((x) => x.id === zone);
-      base = z.price;
-      detail = z.name;
+      const total = +(z.price * sizeTier.multiplier).toFixed(2);
+      setQuote({ total, detail: z.name, sizeName: sizeTier.name });
     } else {
       const a = LOCATIONS.find((l) => l.name === from);
       const b = LOCATIONS.find((l) => l.name === to);
       const km = distanceKm(a, b);
-      base = PER_KM.baseFee + km * PER_KM.ratePerKm;
-      detail = `${km} km · $${PER_KM.baseFee} base + $${PER_KM.ratePerKm}/km`;
+      const total = calcPrice(km, sizeTier.multiplier);
+      const detail = `${km} km · $${PRICING.baseFee} base + $${PRICING.ratePerKm}/km`;
+      setQuote({ total, detail, sizeName: sizeTier.name });
     }
-    const total = +(base * sizeTier.multiplier).toFixed(2);
-    setQuote({ total, detail, sizeName: sizeTier.name });
   };
 
   const field = "w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100";
@@ -34,13 +31,13 @@ export default function QuoteCalculator({ onBook }) {
   return (
     <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-900/10 sm:p-8">
       <div className="mb-6 inline-flex rounded-full bg-slate-100 p-1">
+        <button onClick={() => { setModel("distance"); setQuote(null); }}
+          className={`rounded-full px-4 py-2 text-sm font-medium transition ${model === "distance" ? "bg-[#0f1b2d] text-white shadow" : "text-slate-500"}`}>
+          Distance pricing
+        </button>
         <button onClick={() => { setModel("zone"); setQuote(null); }}
           className={`rounded-full px-4 py-2 text-sm font-medium transition ${model === "zone" ? "bg-[#0f1b2d] text-white shadow" : "text-slate-500"}`}>
           Zone pricing
-        </button>
-        <button onClick={() => { setModel("perkm"); setQuote(null); }}
-          className={`rounded-full px-4 py-2 text-sm font-medium transition ${model === "perkm" ? "bg-[#0f1b2d] text-white shadow" : "text-slate-500"}`}>
-          Distance pricing
         </button>
       </div>
 

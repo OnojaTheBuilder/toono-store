@@ -1,5 +1,16 @@
 // ALL logistics pricing lives here. Client sends real numbers, edit this file.
 
+// --- PRICING MODEL ---
+// price = max(minimumCharge, baseFee + straightLineKm * roadFactor * ratePerKm) * sizeMultiplier
+// Return trip is baked into ratePerKm (rate set high enough to cover the drive back).
+export const PRICING = {
+  baseFee: 5,          // client's callout fee to arrive
+  ratePerKm: 2.0,      // per km, includes return-trip cost
+  roadFactor: 1.3,     // approximates real road distance from straight-line
+  minimumCharge: 15,   // no job is worth less than this
+};
+
+// Zone pricing kept as an alternative the client can still preview.
 export const ZONES = [
   { id: "local", name: "Within city", price: 15 },
   { id: "near", name: "Neighbouring town (under 30km)", price: 30 },
@@ -7,12 +18,11 @@ export const ZONES = [
   { id: "long", name: "Long distance (100km+)", price: 120 },
 ];
 
-export const PER_KM = { baseFee: 10, ratePerKm: 1.5 };
-
 export const SIZE_TIERS = [
   { id: "small", name: "Small (envelope / shoebox)", multiplier: 1 },
   { id: "medium", name: "Medium (carry-on size)", multiplier: 1.4 },
   { id: "large", name: "Large (suitcase+)", multiplier: 1.9 },
+  { id: "xl", name: "Extra large (furniture / bulk)", multiplier: 2.6 },
 ];
 
 export const LOCATIONS = [
@@ -37,6 +47,15 @@ export function distanceKm(a, b) {
     Math.sin(dLat / 2) ** 2 +
     Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
   return Math.round(2 * R * Math.asin(Math.sqrt(h)));
+}
+
+// The main quote formula. Straight-line distance in, price out.
+export function calcPrice(km, sizeMultiplier) {
+  const { baseFee, ratePerKm, roadFactor, minimumCharge } = PRICING;
+  const distanceCost = km * roadFactor * ratePerKm;
+  const beforeMin = baseFee + distanceCost;
+  const withMin = Math.max(minimumCharge, beforeMin);
+  return +(withMin * sizeMultiplier).toFixed(2);
 }
 
 export const BUSINESS = {
@@ -68,8 +87,8 @@ export const TESTIMONIALS = [
 
 export const FAQ = [
   { q: "How fast can you deliver?", a: "Local runs are often same-day if booked before noon. Regional and long-distance deliveries are typically next day, confirmed when you book." },
-  { q: "How is the price calculated?", a: "You get an instant quote based on where it's going and the package size. The price you see is the price you pay, no surprise fees." },
-  { q: "What can you carry?", a: "Documents, parcels, and larger items up to a full suitcase and beyond. If you're unsure about size, send a note with your booking and we'll confirm." },
+  { q: "How is the price calculated?", a: "A base callout fee plus a per-kilometre rate for the trip, adjusted for package size. There's a minimum charge on very short runs. You see the full price before you book, no surprise fees." },
+  { q: "What can you carry?", a: "Documents, parcels, and larger items right up to furniture. Pick the size that matches your item, or send a note if you're unsure." },
   { q: "How do I pay?", a: "For now, payment is arranged directly on pickup or delivery. Online payment is coming soon." },
   { q: "Do you handle fragile items?", a: "Yes. Flag it in your booking notes and it's handled with extra care, start to finish." },
 ];
