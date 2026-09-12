@@ -53,7 +53,7 @@ function Shell() {
         </>
       )}
 
-      {view.page === "home" && (
+           {view.page === "home" && (
         <>
           {!search && (
             <>
@@ -61,6 +61,7 @@ function Shell() {
               <DealsRow onOpen={openProduct} />
               <TrendingRow onOpen={openProduct} />
               <CategoryTiles onCategory={pickCategory} />
+              <LogisticsBand onOpen={goLogistics} />
             </>
           )}
           <ProductGrid category={category} search={search} onOpen={openProduct} onClearSearch={goHome} />
@@ -68,13 +69,11 @@ function Shell() {
             <>
               <TrustStrip />
               <Testimonials />
-              <LogisticsBand onOpen={goLogistics} />
               <Newsletter />
             </>
           )}
         </>
       )}
-
       {view.page === "product" && (
         <div>
           <div className="bg-neutral-950 px-6 pt-6">
