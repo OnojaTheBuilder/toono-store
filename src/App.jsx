@@ -3,12 +3,11 @@ import { CartProvider, useCart } from "./context/CartContext";
 import AnnouncementBar from "./components/AnnouncementBar";
 import Header from "./components/Header";
 import MarketHero from "./components/MarketHero";
-import DealsRow from "./components/DealsRow";
-import TrendingRow from "./components/TrendingRow";
+import PromoGrid from "./components/PromoGrid";
+import FlashDeals from "./components/FlashDeals";
+import DenseGrid from "./components/DenseGrid";
 import CategoryTiles from "./components/CategoryTiles";
-import ProductGrid from "./components/ProductGrid";
 import TrustStrip from "./components/TrustStrip";
-import Testimonials from "./components/Testimonials";
 import LogisticsBand from "./components/LogisticsBand";
 import Newsletter from "./components/Newsletter";
 import ProductPage from "./components/ProductPage";
@@ -53,27 +52,27 @@ function Shell() {
         </>
       )}
 
-           {view.page === "home" && (
+      {view.page === "home" && (
         <>
           {!search && (
             <>
               <MarketHero onCategory={pickCategory} onSearch={runSearch} />
-              <DealsRow onOpen={openProduct} />
-              <TrendingRow onOpen={openProduct} />
-              <CategoryTiles onCategory={pickCategory} />
+              <PromoGrid onCategory={pickCategory} onSearch={runSearch} />
+              <FlashDeals onOpen={openProduct} />
               <LogisticsBand onOpen={goLogistics} />
             </>
           )}
-          <ProductGrid category={category} search={search} onOpen={openProduct} onClearSearch={goHome} />
+          <DenseGrid category={category} search={search} onOpen={openProduct} onClearSearch={goHome} />
           {!search && (
             <>
+              <CategoryTiles onCategory={pickCategory} />
               <TrustStrip />
-              <Testimonials />
               <Newsletter />
             </>
           )}
         </>
       )}
+
       {view.page === "product" && (
         <div>
           <div className="bg-neutral-950 px-6 pt-6">
