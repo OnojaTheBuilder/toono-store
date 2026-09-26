@@ -17,8 +17,7 @@ export default function CategoryTiles({ onCategory }) {
     <section className="bg-[#f5f2ec] px-6 py-16">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center">
-          <span className="text-sm uppercase tracking-[0.2em] text-amber-700">Browse departments</span>
-          <h2 className="mt-3 font-serif text-4xl text-neutral-900 lg:text-5xl">Shop by category</h2>
+          <h2 className="font-serif text-4xl text-neutral-900 lg:text-5xl">Shop by category</h2>
         </div>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {cats.map((c) => (
