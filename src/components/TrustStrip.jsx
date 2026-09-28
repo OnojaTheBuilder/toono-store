@@ -11,11 +11,11 @@ export default function TrustStrip() {
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 md:grid-cols-4">
         {ITEMS.map((i) => (
           <div key={i.title} className="text-center">
-            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 text-lg text-emerald-400">
+            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white text-lg text-clay">
               {i.icon}
             </div>
             <h4 className="font-semibold text-neutral-900">{i.title}</h4>
-            <p className="mt-1 text-sm text-neutral-500">{i.text}</p>
+            <p className="mt-1 text-sm text-ink0">{i.text}</p>
           </div>
         ))}
       </div>

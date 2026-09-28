@@ -25,7 +25,7 @@ export default function DealsRow({ onOpen }) {
                 <h3 className="mt-2 line-clamp-1 text-sm font-medium text-neutral-900">{p.name}</h3>
                 <div className="flex items-baseline gap-2">
                   <span className="text-base font-bold text-red-600">${p.price.toFixed(2)}</span>
-                  <span className="text-xs text-neutral-400 line-through">${p.compareAt.toFixed(2)}</span>
+                  <span className="text-xs text-ink/60 line-through">${p.compareAt.toFixed(2)}</span>
                 </div>
               </button>
             );

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 body {
-  background: #0a0a0a;
-  font-family: "Inter", system-ui, sans-serif;
+  background: #FBF9F4;
+  font-family: "Space Grotesk", system-ui, sans-serif;
 }
 
 @keyframes marquee {

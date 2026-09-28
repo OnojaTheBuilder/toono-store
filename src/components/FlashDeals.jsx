@@ -25,7 +25,7 @@ export default function FlashDeals({ onOpen }) {
   const items = getDeals();
   const t = useCountdown();
   return (
-    <section className="bg-neutral-950 px-4 py-6">
+    <section className="bg-ivory px-4 py-6">
       <div className="mx-auto max-w-7xl">
         <div className="mb-4 flex items-center justify-between rounded-xl bg-gradient-to-r from-red-600 to-orange-500 px-4 py-3">
           <div className="flex items-center gap-2 text-white">
@@ -42,16 +42,16 @@ export default function FlashDeals({ onOpen }) {
             const off = Math.round(((p.compareAt - p.price) / p.compareAt) * 100);
             return (
               <button key={p.id} onClick={() => onOpen(p.slug)} className="group w-36 shrink-0 text-left sm:w-40">
-                <div className="relative overflow-hidden rounded-xl border border-white/10 bg-neutral-900">
+                <div className="relative overflow-hidden rounded-xl border border-ink/10 bg-white">
                   <div className="aspect-square overflow-hidden">
                     <img src={p.media[0]} alt={p.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <span className="absolute left-1.5 top-1.5 rounded bg-red-600 px-1.5 py-0.5 text-[10px] font-bold text-white">-{off}%</span>
                 </div>
-                <p className="mt-1.5 line-clamp-1 text-xs text-neutral-300">{p.name}</p>
+                <p className="mt-1.5 line-clamp-1 text-xs text-ink/70">{p.name}</p>
                 <div className="flex items-baseline gap-1">
                   <span className="text-sm font-bold text-red-400">${p.price.toFixed(2)}</span>
-                  <span className="text-[10px] text-neutral-500 line-through">${p.compareAt.toFixed(2)}</span>
+                  <span className="text-[10px] text-ink0 line-through">${p.compareAt.toFixed(2)}</span>
                 </div>
               </button>
             );

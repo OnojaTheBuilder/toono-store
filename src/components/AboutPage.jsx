@@ -1,14 +1,14 @@
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-50">
+    <div className="min-h-screen bg-ivory text-ink">
       <div className="mx-auto max-w-4xl px-6 py-20">
-        <span className="text-sm uppercase tracking-[0.2em] text-emerald-400">Our story</span>
+        <span className="text-sm uppercase tracking-[0.2em] text-clay">Our story</span>
         <h1 className="mt-4 font-serif text-5xl lg:text-6xl">
           Built by a family,<br />
-          <span className="italic text-emerald-400">for people with taste.</span>
+          <span className="italic text-clay">for people with taste.</span>
         </h1>
 
-        <div className="mt-10 space-y-6 text-lg leading-relaxed text-neutral-400">
+        <div className="mt-10 space-y-6 text-lg leading-relaxed text-ink/60">
           <p>
             TOONO started at a kitchen table in Canada, with a simple idea: bring
             together the pieces our family actually loved wearing and using, and
@@ -32,9 +32,9 @@ export default function AboutPage() {
             { n: "100%", l: "Family-run" },
             { n: "24h", l: "Reply time" },
           ].map((s) => (
-            <div key={s.l} className="rounded-2xl border border-white/10 p-6 text-center">
-              <p className="font-serif text-4xl text-emerald-400">{s.n}</p>
-              <p className="mt-2 text-sm text-neutral-400">{s.l}</p>
+            <div key={s.l} className="rounded-2xl border border-ink/10 p-6 text-center">
+              <p className="font-serif text-4xl text-clay">{s.n}</p>
+              <p className="mt-2 text-sm text-ink/60">{s.l}</p>
             </div>
           ))}
         </div>

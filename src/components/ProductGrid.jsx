@@ -22,13 +22,13 @@ export default function ProductGrid({ category, search = "", onOpen, onClearSear
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 flex items-end justify-between">
           <h2 className="font-serif text-4xl text-neutral-900 lg:text-5xl">{heading}</h2>
-          <span className="text-sm text-neutral-500">{items.length} items</span>
+          <span className="text-sm text-ink0">{items.length} items</span>
         </div>
 
         {items.length === 0 ? (
           <div className="rounded-3xl border border-dashed border-neutral-300 bg-white p-16 text-center">
             <p className="text-lg text-neutral-600">Nothing matched that.</p>
-            <button onClick={onClearSearch} className="mt-4 rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white">
+            <button onClick={onClearSearch} className="mt-4 rounded-full bg-white px-6 py-3 text-sm font-semibold text-white">
               Browse everything
             </button>
           </div>
@@ -44,10 +44,10 @@ export default function ProductGrid({ category, search = "", onOpen, onClearSear
                 </div>
                 <div className="mt-3">
                   <h3 className="line-clamp-1 font-medium text-neutral-900">{p.name}</h3>
-                  <div className="flex items-center gap-1 text-xs text-amber-500">★ <span className="text-neutral-500">{p.rating} ({p.reviewCount})</span></div>
+                  <div className="flex items-center gap-1 text-xs text-amber-500">★ <span className="text-ink0">{p.rating} ({p.reviewCount})</span></div>
                   <div className="flex items-baseline gap-2">
                     <span className="text-sm font-bold text-neutral-900">${p.price.toFixed(2)}</span>
-                    <span className="text-xs text-neutral-400 line-through">${p.compareAt.toFixed(2)}</span>
+                    <span className="text-xs text-ink/60 line-through">${p.compareAt.toFixed(2)}</span>
                   </div>
                 </div>
               </button>

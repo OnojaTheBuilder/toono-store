@@ -18,17 +18,17 @@ export default function DenseGrid({ category, search = "", onOpen, onClearSearch
   }
 
   return (
-    <section className="bg-neutral-950 px-4 py-6">
+    <section className="bg-ivory px-4 py-6">
       <div className="mx-auto max-w-7xl">
         <div className="mb-4 flex items-end justify-between">
           <h2 className="text-lg font-bold text-white">{heading}</h2>
-          <span className="text-xs text-neutral-500">{items.length} items</span>
+          <span className="text-xs text-ink0">{items.length} items</span>
         </div>
 
         {items.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-white/15 p-12 text-center">
-            <p className="text-neutral-400">Nothing matched that.</p>
-            <button onClick={onClearSearch} className="mt-3 rounded-full bg-white px-5 py-2 text-sm font-semibold text-neutral-950">Browse everything</button>
+          <div className="rounded-2xl border border-dashed border-ink/15 p-12 text-center">
+            <p className="text-ink/60">Nothing matched that.</p>
+            <button onClick={onClearSearch} className="mt-3 rounded-full bg-white px-5 py-2 text-sm font-semibold text-ivory">Browse everything</button>
           </div>
         ) : (
           <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
@@ -36,19 +36,19 @@ export default function DenseGrid({ category, search = "", onOpen, onClearSearch
               const off = Math.round(((p.compareAt - p.price) / p.compareAt) * 100);
               return (
                 <button key={p.id} onClick={() => onOpen(p.slug)} className="group text-left">
-                  <div className="relative overflow-hidden rounded-xl border border-white/10 bg-neutral-900">
+                  <div className="relative overflow-hidden rounded-xl border border-ink/10 bg-white">
                     <div className="aspect-square overflow-hidden">
                       <img src={p.media[0]} alt={p.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                     </div>
                     <span className="absolute left-1.5 top-1.5 rounded bg-red-600 px-1.5 py-0.5 text-[10px] font-bold text-white">-{off}%</span>
                   </div>
                   <div className="mt-1.5">
-                    <p className="line-clamp-2 text-xs leading-tight text-neutral-300">{p.name}</p>
+                    <p className="line-clamp-2 text-xs leading-tight text-ink/70">{p.name}</p>
                     <div className="mt-1 flex items-baseline gap-1">
                       <span className="text-sm font-bold text-white">${p.price.toFixed(2)}</span>
-                      <span className="text-[10px] text-neutral-500 line-through">${p.compareAt.toFixed(2)}</span>
+                      <span className="text-[10px] text-ink0 line-through">${p.compareAt.toFixed(2)}</span>
                     </div>
-                    <div className="flex items-center gap-0.5 text-[10px] text-amber-500">★ <span className="text-neutral-500">{p.rating} · {p.reviewCount} sold</span></div>
+                    <div className="flex items-center gap-0.5 text-[10px] text-amber-500">★ <span className="text-ink0">{p.rating} · {p.reviewCount} sold</span></div>
                   </div>
                 </button>
               );

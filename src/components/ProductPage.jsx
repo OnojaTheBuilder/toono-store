@@ -46,17 +46,17 @@ export default function ProductPage({ slug }) {
     return () => clearInterval(t);
   }, []);
 
-  if (!product) return <div className="p-10 text-center text-neutral-50">Product not found.</div>;
+  if (!product) return <div className="p-10 text-center text-ink">Product not found.</div>;
 
   const proof = socialProof[proofIdx];
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-50">
+    <div className="min-h-screen bg-ivory text-ink">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-16 lg:grid-cols-2">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-ink/10">
             <img src={product.media[mediaIdx]} alt={product.name} className="h-full w-full object-cover" />
-            <span className="absolute left-4 top-4 rounded-full bg-emerald-400 px-3 py-1 text-xs font-bold text-neutral-950">
+            <span className="absolute left-4 top-4 rounded-full bg-clay px-3 py-1 text-xs font-bold text-ivory">
               {product.badge}
             </span>
           </div>
@@ -78,18 +78,18 @@ export default function ProductPage({ slug }) {
         <div className="flex flex-col">
           <div className="flex items-center gap-2 text-sm text-amber-400">
             {"★".repeat(Math.round(product.rating))}
-            <span className="text-neutral-400">
+            <span className="text-ink/60">
               {product.rating} ({product.reviewCount} reviews)
             </span>
           </div>
 
           <h1 className="mt-3 font-serif text-4xl lg:text-5xl">{product.name}</h1>
-          <p className="mt-2 text-lg text-neutral-400">{product.tagline}</p>
+          <p className="mt-2 text-lg text-ink/60">{product.tagline}</p>
 
           <div className="mt-5 flex items-baseline gap-3">
             <span className="text-3xl font-semibold">${product.price.toFixed(2)}</span>
-            <span className="text-lg text-neutral-500 line-through">${product.compareAt.toFixed(2)}</span>
-            <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-sm font-semibold text-emerald-400">
+            <span className="text-lg text-ink0 line-through">${product.compareAt.toFixed(2)}</span>
+            <span className="rounded-full bg-clay/15 px-3 py-1 text-sm font-semibold text-clay">
               Save ${(product.compareAt - product.price).toFixed(2)}
             </span>
           </div>
@@ -108,8 +108,8 @@ export default function ProductPage({ slug }) {
           </div>
 
           <div className="mt-8">
-            <p className="mb-3 text-sm font-medium text-neutral-300">
-              Color: <span className="text-neutral-500">{color}</span>
+            <p className="mb-3 text-sm font-medium text-ink/70">
+              Color: <span className="text-ink0">{color}</span>
             </p>
             <div className="flex gap-3">
               {product.colors.map((c) => (
@@ -127,7 +127,7 @@ export default function ProductPage({ slug }) {
           </div>
 
           <div className="mt-6">
-            <p className="mb-3 text-sm font-medium text-neutral-300">Size</p>
+            <p className="mb-3 text-sm font-medium text-ink/70">Size</p>
             <div className="flex flex-wrap gap-3">
               {product.sizes.map((s) => (
                 <button
@@ -135,8 +135,8 @@ export default function ProductPage({ slug }) {
                   onClick={() => setSize(s)}
                   className={`min-w-[3rem] rounded-xl border px-4 py-3 text-sm font-medium transition-all ${
                     size === s
-                      ? "border-emerald-400 bg-emerald-400 text-neutral-950"
-                      : "border-white/15 hover:border-white/40"
+                      ? "border-emerald-400 bg-clay text-ivory"
+                      : "border-ink/15 hover:border-white/40"
                   }`}
                 >
                   {s}
@@ -147,35 +147,35 @@ export default function ProductPage({ slug }) {
 
           <button
             onClick={() => addItem(product, color, size || product.sizes[0])}
-            className="mt-8 w-full rounded-full bg-neutral-50 py-4 text-base font-semibold text-neutral-950 transition-transform active:scale-[0.98] hover:bg-emerald-400"
+            className="mt-8 w-full rounded-full bg-neutral-50 py-4 text-base font-semibold text-ivory transition-transform active:scale-[0.98] hover:bg-clay"
           >
             Add to cart · ${product.price.toFixed(2)}
           </button>
 
           <ul className="mt-6 space-y-2">
             {product.highlights.map((h) => (
-              <li key={h} className="flex items-center gap-2 text-sm text-neutral-400">
-                <span className="text-emerald-400">✓</span> {h}
+              <li key={h} className="flex items-center gap-2 text-sm text-ink/60">
+                <span className="text-clay">✓</span> {h}
               </li>
             ))}
           </ul>
 
-          <div className="mt-10 border-t border-white/10 pt-8">
+          <div className="mt-10 border-t border-ink/10 pt-8">
             <h3 className="font-serif text-2xl">The story</h3>
-            <p className="mt-3 leading-relaxed text-neutral-400">{product.story}</p>
+            <p className="mt-3 leading-relaxed text-ink/60">{product.story}</p>
           </div>
         </div>
       </div>
 
       <div
-        className={`fixed bottom-6 left-6 z-40 flex items-center gap-3 rounded-2xl border border-white/10 bg-neutral-900/95 px-4 py-3 shadow-2xl backdrop-blur transition-all duration-500 ${
+        className={`fixed bottom-6 left-6 z-40 flex items-center gap-3 rounded-2xl border border-ink/10 bg-white/95 px-4 py-3 shadow-2xl backdrop-blur transition-all duration-500 ${
           showProof ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"
         }`}
       >
-        <span className="h-2 w-2 rounded-full bg-emerald-400" />
+        <span className="h-2 w-2 rounded-full bg-clay" />
         <p className="text-sm">
           <span className="font-semibold">{proof.name}</span>{" "}
-          <span className="text-neutral-400">{proof.action}</span>
+          <span className="text-ink/60">{proof.action}</span>
         </p>
       </div>
     </div>

@@ -29,7 +29,7 @@ export default function CategoryTiles({ onCategory }) {
               <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5">
                 <h3 className="font-serif text-xl text-white">{c}</h3>
-                <span className="mt-1 inline-block text-sm font-semibold text-emerald-300 transition-transform group-hover:translate-x-1">Shop →</span>
+                <span className="mt-1 inline-block text-sm font-semibold text-clay transition-transform group-hover:translate-x-1">Shop →</span>
               </div>
             </button>
           ))}

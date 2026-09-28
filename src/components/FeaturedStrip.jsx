@@ -8,7 +8,7 @@ export default function FeaturedStrip({ onOpen }) {
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 flex items-end justify-between">
           <div>
-            <span className="text-sm uppercase tracking-[0.2em] text-amber-700">Just landed</span>
+            <span className="text-sm uppercase tracking-[0.2em] text-clay">Just landed</span>
             <h2 className="mt-3 font-serif text-4xl text-neutral-900 lg:text-5xl">New this season</h2>
           </div>
         </div>
@@ -35,7 +35,7 @@ export default function FeaturedStrip({ onOpen }) {
               <h3 className="mt-3 font-medium text-neutral-900">{p.name}</h3>
               <div className="flex items-baseline gap-2">
                 <span className="text-sm font-semibold text-neutral-900">${p.price.toFixed(2)}</span>
-                <span className="text-xs text-neutral-400 line-through">${p.compareAt.toFixed(2)}</span>
+                <span className="text-xs text-ink/60 line-through">${p.compareAt.toFixed(2)}</span>
               </div>
             </button>
           ))}

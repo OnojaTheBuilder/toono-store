@@ -17,9 +17,9 @@ export default function CheckoutPage({ onBack, onPlaced }) {
 
   if (items.length === 0) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-neutral-950 text-neutral-50">
-        <p className="text-lg text-neutral-400">Your bag is empty.</p>
-        <button onClick={onBack} className="mt-4 rounded-full bg-neutral-50 px-6 py-3 font-semibold text-neutral-950">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-ivory text-ink">
+        <p className="text-lg text-ink/60">Your bag is empty.</p>
+        <button onClick={onBack} className="mt-4 rounded-full bg-neutral-50 px-6 py-3 font-semibold text-ivory">
           Back to shop
         </button>
       </div>
@@ -27,11 +27,11 @@ export default function CheckoutPage({ onBack, onPlaced }) {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-50">
+    <div className="min-h-screen bg-ivory text-ink">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 py-16 lg:grid-cols-5">
         {/* Form */}
         <div className="lg:col-span-3">
-          <button onClick={onBack} className="mb-6 text-sm text-neutral-400 hover:text-neutral-50">← Back</button>
+          <button onClick={onBack} className="mb-6 text-sm text-ink/60 hover:text-ink">← Back</button>
           <h1 className="font-serif text-4xl">Checkout</h1>
 
           <div className="mt-8 rounded-2xl border border-amber-400/20 bg-amber-400/5 p-4 text-sm text-amber-200">
@@ -43,25 +43,25 @@ export default function CheckoutPage({ onBack, onPlaced }) {
             <section>
               <h3 className="mb-4 font-medium">Contact</h3>
               <input value={form.email} onChange={update("email")} placeholder="Email"
-                className="w-full rounded-xl border border-white/15 bg-neutral-950 px-4 py-3 outline-none focus:border-emerald-400" />
+                className="w-full rounded-xl border border-ink/15 bg-ivory px-4 py-3 outline-none focus:border-emerald-400" />
             </section>
 
             <section>
               <h3 className="mb-4 font-medium">Shipping address</h3>
               <div className="space-y-3">
                 <input value={form.name} onChange={update("name")} placeholder="Full name"
-                  className="w-full rounded-xl border border-white/15 bg-neutral-950 px-4 py-3 outline-none focus:border-emerald-400" />
+                  className="w-full rounded-xl border border-ink/15 bg-ivory px-4 py-3 outline-none focus:border-emerald-400" />
                 <input value={form.address} onChange={update("address")} placeholder="Street address"
-                  className="w-full rounded-xl border border-white/15 bg-neutral-950 px-4 py-3 outline-none focus:border-emerald-400" />
+                  className="w-full rounded-xl border border-ink/15 bg-ivory px-4 py-3 outline-none focus:border-emerald-400" />
                 <div className="grid grid-cols-3 gap-3">
                   <input value={form.city} onChange={update("city")} placeholder="City"
-                    className="rounded-xl border border-white/15 bg-neutral-950 px-4 py-3 outline-none focus:border-emerald-400" />
+                    className="rounded-xl border border-ink/15 bg-ivory px-4 py-3 outline-none focus:border-emerald-400" />
                   <select value={form.province} onChange={update("province")}
-                    className="rounded-xl border border-white/15 bg-neutral-950 px-4 py-3 outline-none focus:border-emerald-400">
+                    className="rounded-xl border border-ink/15 bg-ivory px-4 py-3 outline-none focus:border-emerald-400">
                     {["ON","QC","BC","AB","MB","SK","NS","NB","NL","PE"].map((p) => <option key={p}>{p}</option>)}
                   </select>
                   <input value={form.postal} onChange={update("postal")} placeholder="Postal"
-                    className="rounded-xl border border-white/15 bg-neutral-950 px-4 py-3 outline-none focus:border-emerald-400" />
+                    className="rounded-xl border border-ink/15 bg-ivory px-4 py-3 outline-none focus:border-emerald-400" />
                 </div>
               </div>
             </section>
@@ -69,13 +69,13 @@ export default function CheckoutPage({ onBack, onPlaced }) {
             <section>
               <h3 className="mb-4 font-medium">Payment</h3>
               <input value={form.card} onChange={update("card")} placeholder="Card number (demo)"
-                className="w-full rounded-xl border border-white/15 bg-neutral-950 px-4 py-3 outline-none focus:border-emerald-400" />
+                className="w-full rounded-xl border border-ink/15 bg-ivory px-4 py-3 outline-none focus:border-emerald-400" />
             </section>
 
             <button
               onClick={() => canPlace && onPlaced(total)}
               disabled={!canPlace}
-              className="w-full rounded-full bg-emerald-400 py-4 font-semibold text-neutral-950 transition-transform active:scale-[0.98] disabled:opacity-40"
+              className="w-full rounded-full bg-clay py-4 font-semibold text-ivory transition-transform active:scale-[0.98] disabled:opacity-40"
             >
               Place order · ${total.toFixed(2)}
             </button>
@@ -84,7 +84,7 @@ export default function CheckoutPage({ onBack, onPlaced }) {
 
         {/* Summary */}
         <div className="lg:col-span-2">
-          <div className="rounded-2xl border border-white/10 bg-neutral-900/50 p-6">
+          <div className="rounded-2xl border border-ink/10 bg-white/50 p-6">
             <h3 className="mb-4 font-medium">Order summary</h3>
             <ul className="space-y-4">
               {items.map((l) => (
@@ -92,17 +92,17 @@ export default function CheckoutPage({ onBack, onPlaced }) {
                   <img src={l.image} alt={l.name} className="h-16 w-14 rounded-lg object-cover" />
                   <div className="flex-1 text-sm">
                     <p className="font-medium">{l.name}</p>
-                    <p className="text-neutral-500">{l.color} · {l.size} · ×{l.qty}</p>
+                    <p className="text-ink0">{l.color} · {l.size} · ×{l.qty}</p>
                   </div>
                   <span className="text-sm font-semibold">${(l.price * l.qty).toFixed(2)}</span>
                 </li>
               ))}
             </ul>
-            <div className="mt-6 space-y-2 border-t border-white/10 pt-4 text-sm">
-              <div className="flex justify-between text-neutral-400"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
-              <div className="flex justify-between text-neutral-400"><span>Shipping</span><span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span></div>
-              <div className="flex justify-between text-neutral-400"><span>Tax (est.)</span><span>${tax.toFixed(2)}</span></div>
-              <div className="mt-2 flex justify-between border-t border-white/10 pt-3 text-lg font-semibold text-neutral-50">
+            <div className="mt-6 space-y-2 border-t border-ink/10 pt-4 text-sm">
+              <div className="flex justify-between text-ink/60"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
+              <div className="flex justify-between text-ink/60"><span>Shipping</span><span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span></div>
+              <div className="flex justify-between text-ink/60"><span>Tax (est.)</span><span>${tax.toFixed(2)}</span></div>
+              <div className="mt-2 flex justify-between border-t border-ink/10 pt-3 text-lg font-semibold text-ink">
                 <span>Total</span><span>${total.toFixed(2)}</span>
               </div>
             </div>

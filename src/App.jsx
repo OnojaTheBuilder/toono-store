@@ -75,8 +75,8 @@ function Shell() {
 
       {view.page === "product" && (
         <div>
-          <div className="bg-neutral-950 px-6 pt-6">
-            <button onClick={goHome} className="rounded-full border border-white/15 px-4 py-2 text-sm text-neutral-300 hover:bg-white/5">← Back to shop</button>
+          <div className="bg-ivory px-6 pt-6">
+            <button onClick={goHome} className="rounded-full border border-ink/15 px-4 py-2 text-sm text-ink/70 hover:bg-white/5">← Back to shop</button>
           </div>
           <ProductPage slug={view.slug} />
         </div>
